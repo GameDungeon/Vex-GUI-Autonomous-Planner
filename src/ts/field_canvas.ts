@@ -1,7 +1,7 @@
 import Konva from "konva";
 
 function fitStageIntoParentContainer() {
-  var container = document.querySelector('#feild-container');
+  var container = document.querySelector('#feild-container')! as HTMLElement;
 
   var containerWidth = container.offsetWidth;
   var scale = containerWidth / sceneWidth;

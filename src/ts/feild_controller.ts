@@ -4,11 +4,13 @@ import * as Field from "./field_canvas";
 import * as SideBar from "./side_bar";
 import { Tools } from "./side_bar"
 
-var points = [];
+class linePoint {
+    index: number 
+    constructor() {
+        this.index = points.length;
+    }
 
-var linePoint = function () {
-    this.index = points.length;
-    this.drag = function () {
+    drag() {
         var pointerPos = Field.stage.getRelativePointerPosition();
         var x = pointerPos.x;
         var y = pointerPos.y;
@@ -19,6 +21,8 @@ var linePoint = function () {
         Field.line.points(linepoints);
     }
 }
+
+var points : linePoint[] = [];
 
 function activateEditMode() {
     if(SideBar.current_tool === Tools.Draw)
@@ -105,8 +109,8 @@ Field.stage.on('click', (e) => {
     }
 });
 
-document.getElementById("edit").onclick = activateEditMode;
-document.getElementById("draw").onclick = activateDrawMode;
-document.getElementById("insert").onclick = activateInsertMode;
+document.getElementById("edit")!.onclick = activateEditMode;
+document.getElementById("draw")!.onclick = activateDrawMode;
+document.getElementById("insert")!.onclick = activateInsertMode;
 
 activateEditMode();

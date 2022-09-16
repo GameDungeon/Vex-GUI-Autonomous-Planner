@@ -4,10 +4,11 @@ import { terser } from 'rollup-plugin-terser';
 import hotcss from 'rollup-plugin-hot-css';
 import commonjs from 'rollup-plugin-commonjs-alternate';
 import json from "@rollup/plugin-json";
+import typescript from '@rollup/plugin-typescript';
 
 
 let config = {
-    input: './src/main.js',
+    input: './src/main.ts',
     output: {
         dir: 'dist',
         format: 'esm',
@@ -15,6 +16,7 @@ let config = {
         assetFileNames: '[name].[hash][extname]'
     },
     plugins: [
+        typescript(),
         json(),
         node_resolve({
             browser: true,
@@ -25,8 +27,7 @@ let config = {
             extensions: ['.css', '.scss'],
             loaders: ['scss'],
         }),
-    ],
-    treeshake: false
+    ]
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -34,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
         static_files({
             include: ['./public']
         }),
-        terser()
+        //terser()
     ]);
 }
 
