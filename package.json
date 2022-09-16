@@ -1,0 +1,24 @@
+{
+    "license": "MIT",
+    "scripts": {
+        "clean": "shx rm -rf dist",
+        "start": "nollup -c --environment NODE_ENV:development",
+        "build": "npm run clean && rollup -c --environment NODE_ENV:production"
+    },
+    "devDependencies": {
+        "@rollup/plugin-commonjs": "^22.0.2",
+        "@rollup/plugin-json": "^4.1.0",
+        "@rollup/plugin-node-resolve": "^13.0.4",
+        "nollup": "^0.18.4",
+        "rollup": "^2.56.3",
+        "rollup-plugin-commonjs-alternate": "^0.8.0",
+        "rollup-plugin-hot-css": "^0.5.1",
+        "rollup-plugin-static-files": "^0.2.0",
+        "rollup-plugin-terser": "^7.0.2",
+        "sass": "^1.54.9",
+        "shx": "^0.3.3"
+    },
+    "dependencies": {
+        "konva": "^8.3.12"
+    }
+}
