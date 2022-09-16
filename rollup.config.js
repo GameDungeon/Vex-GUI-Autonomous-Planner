@@ -14,9 +14,6 @@ let config = {
         entryFileNames: '[name].[hash].js',
         assetFileNames: '[name].[hash][extname]'
     },
-    treeshake: {
-        moduleSideEffects: ['konva'],
-    },
     plugins: [
         json(),
         node_resolve({
@@ -29,6 +26,7 @@ let config = {
             loaders: ['scss'],
         }),
     ],
+    treeshake: false
 }
 
 if (process.env.NODE_ENV === 'production') {
