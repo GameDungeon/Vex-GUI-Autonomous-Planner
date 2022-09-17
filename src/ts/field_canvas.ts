@@ -14,7 +14,7 @@ function fitStageIntoParentContainer() {
 const sceneWidth = 1000;
 const sceneHeight = 1000;
 
-export const feildBounds = [];
+export const fieldBounds = [20, 20, 980, 980];
 
 export var stage = new Konva.Stage({
   container: 'field',

@@ -8,13 +8,16 @@ import { Tools } from "./side_bar";
 class linePoint {
     index: number
     shape: Konva.Circle
+    commands: Object[]
     constructor(shape, index) {
         this.index = index;
         this.shape = shape;
+        this.drag();
         this.select();
     }
 
     drag() {
+        this.bounds();
         var x = this.shape.getAttr("x");
         var y = this.shape.getAttr("y");
         let linepoints = Field.line.points();
@@ -26,6 +29,8 @@ class linePoint {
     bounds() {
         var x = this.shape.getAttr("x");
         var y = this.shape.getAttr("y");
+        this.shape.x(Math.min(Math.max(Field.fieldBounds[0], x), Field.fieldBounds[2]));
+        this.shape.y(Math.min(Math.max(Field.fieldBounds[1], y), Field.fieldBounds[3]));
     }
 
     select() {
