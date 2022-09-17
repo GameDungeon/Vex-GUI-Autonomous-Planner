@@ -24,19 +24,24 @@ class linePoint {
     }
 
     bounds() {
-        
+        var x = this.shape.getAttr("x");
+        var y = this.shape.getAttr("y");
     }
 
     select() {
         if (selected_point !== null){
             selected_point.deselect();
         }
+
         selected_point = this;
-        this.shape.stroke('red');
+
+        this.shape.stroke('rgb(0,255,0)');
+        this.shape.radius(12);
     }
 
     deselect() {
         this.shape.stroke('black');
+        this.shape.radius(10);
     }
 }
 

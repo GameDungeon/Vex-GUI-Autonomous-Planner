@@ -1,7 +1,7 @@
 import Konva from "konva";
 
 function fitStageIntoParentContainer() {
-  var container = document.querySelector('#feild-container')! as HTMLElement;
+  var container = document.querySelector('#field-container')! as HTMLElement;
 
   var containerWidth = container.offsetWidth;
   var scale = containerWidth / sceneWidth;
@@ -11,11 +11,13 @@ function fitStageIntoParentContainer() {
   stage.scale({ x: scale, y: scale });
 }
 
-var sceneWidth = 1000;
-var sceneHeight = 1000;
+const sceneWidth = 1000;
+const sceneHeight = 1000;
+
+export const feildBounds = [];
 
 export var stage = new Konva.Stage({
-  container: 'feild',
+  container: 'field',
   width: sceneWidth,
   height: sceneHeight,
 });
@@ -34,7 +36,7 @@ export var line = new Konva.Line({
 
 var imageObj = new Image();
 imageObj.onload = function () {
-  var feild = new Konva.Image({
+  var field = new Konva.Image({
     x: 0,
     y: 0,
     image: imageObj,
@@ -43,7 +45,7 @@ imageObj.onload = function () {
   });
 
   // add the shape to the layer
-  imagelayer.add(feild);
+  imagelayer.add(field);
 };
 imageObj.src = '/assets/spinup_field.png';
 
