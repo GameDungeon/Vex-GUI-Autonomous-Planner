@@ -2,26 +2,46 @@
 import Konva from "konva";
 import * as Field from "./field_canvas";
 import * as SideBar from "./side_bar";
-import { Tools } from "./side_bar"
+import * as Inspector from "./inspector";
+import { Tools } from "./side_bar";
 
 class linePoint {
-    index: number 
-    constructor() {
-        this.index = points.length;
+    index: number
+    shape: Konva.Circle
+    constructor(shape, index) {
+        this.index = index;
+        this.shape = shape;
+        this.select();
     }
 
     drag() {
-        var pointerPos = Field.stage.getRelativePointerPosition();
-        var x = pointerPos.x;
-        var y = pointerPos.y;
+        var x = this.shape.getAttr("x");
+        var y = this.shape.getAttr("y");
         let linepoints = Field.line.points();
         linepoints[this.index*2] = x;
         linepoints[this.index*2+1] = y;
         Field.line.points(linepoints);
     }
+
+    bounds() {
+        
+    }
+
+    select() {
+        if (selected_point !== null){
+            selected_point.deselect();
+        }
+        selected_point = this;
+        this.shape.stroke('red');
+    }
+
+    deselect() {
+        this.shape.stroke('black');
+    }
 }
 
 var points : linePoint[] = [];
+var selected_point : linePoint | null = null;
 
 function activateEditMode() {
     if(SideBar.current_tool === Tools.Draw)
@@ -74,6 +94,9 @@ Field.stage.on('click', (e) => {
             case Tools.Draw:
                 activateEditMode();
                 break;
+            case Tools.Edit:
+                selected_point?.deselect();
+                break;
 
         }
     }
@@ -91,16 +114,21 @@ Field.stage.on('click', (e) => {
                     y: y,
                     radius: 10,
                     fill: 'black',
-                    draggable: true
+                    draggable: true,
+                    strokeWidth: 3
                 });
 
-                var point = new linePoint();
+                var point = new linePoint(circle, points.length);
 
                 points.push(point);
 
                 circle.on('dragmove', () => {
                     point.drag();
                 });
+
+                circle.on("pointerdown", () => {
+                    point.select();
+                })
             
                 Field.pointslayer.add(circle);
                 break;

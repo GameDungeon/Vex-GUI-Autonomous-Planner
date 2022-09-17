@@ -32,6 +32,13 @@ html, body, #gui {
 #inspector {
     display: flex;
     flex-direction: column;
+    padding: 5px;
+
+    .setting {
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+    }
 }
 
 #gui {

@@ -1,4 +1,4 @@
-const units = {"Feet": "ft", "Inches": "in", "Pixels":"px"}
+export const units = {"Feet": "ft", "Inches": "in", "Pixels":"px"}
 
 var unit_dropdown = document.getElementById("units")!;
 
