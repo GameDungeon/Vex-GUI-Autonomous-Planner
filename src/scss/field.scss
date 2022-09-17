@@ -37,6 +37,10 @@ html, body, #gui {
         margin: 5px;
         display: flex;
         flex-direction: row;
+
+        .incorrect {
+            color: red;
+        }
     }
 }
 

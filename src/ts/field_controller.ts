@@ -1,57 +1,10 @@
-
 import Konva from "konva";
 import * as Field from "./field_canvas";
 import * as SideBar from "./side_bar";
 import * as Inspector from "./inspector";
 import { Tools } from "./side_bar";
 
-class linePoint {
-    index: number
-    shape: Konva.Circle
-    commands: Object[]
-    constructor(shape, index) {
-        this.index = index;
-        this.shape = shape;
-        this.drag();
-        this.select();
-    }
-
-    drag() {
-        this.bounds();
-        var x = this.shape.getAttr("x");
-        var y = this.shape.getAttr("y");
-        let linepoints = Field.line.points();
-        linepoints[this.index*2] = x;
-        linepoints[this.index*2+1] = y;
-        Field.line.points(linepoints);
-    }
-
-    bounds() {
-        var x = this.shape.getAttr("x");
-        var y = this.shape.getAttr("y");
-        this.shape.x(Math.min(Math.max(Field.fieldBounds[0], x), Field.fieldBounds[2]));
-        this.shape.y(Math.min(Math.max(Field.fieldBounds[1], y), Field.fieldBounds[3]));
-    }
-
-    select() {
-        if (selected_point !== null){
-            selected_point.deselect();
-        }
-
-        selected_point = this;
-
-        this.shape.stroke('rgb(0,255,0)');
-        this.shape.radius(12);
-    }
-
-    deselect() {
-        this.shape.stroke('black');
-        this.shape.radius(10);
-    }
-}
-
-var points : linePoint[] = [];
-var selected_point : linePoint | null = null;
+var points : Inspector.linePoint[] = [];
 
 function activateEditMode() {
     if(SideBar.current_tool === Tools.Draw)
@@ -105,7 +58,7 @@ Field.stage.on('click', (e) => {
                 activateEditMode();
                 break;
             case Tools.Edit:
-                selected_point?.deselect();
+                Inspector.selected_point?.deselect();
                 break;
 
         }
@@ -128,7 +81,7 @@ Field.stage.on('click', (e) => {
                     strokeWidth: 3
                 });
 
-                var point = new linePoint(circle, points.length);
+                var point = new Inspector.linePoint(circle, points.length);
 
                 points.push(point);
 
