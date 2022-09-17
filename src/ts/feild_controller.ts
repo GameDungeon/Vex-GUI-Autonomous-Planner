@@ -17,7 +17,6 @@ class linePoint {
         let linepoints = Field.line.points();
         linepoints[this.index*2] = x;
         linepoints[this.index*2+1] = y;
-        console.log(this.index);
         Field.line.points(linepoints);
     }
 }

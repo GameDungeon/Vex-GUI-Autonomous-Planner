@@ -45,9 +45,11 @@ imageObj.onload = function () {
   // add the shape to the layer
   imagelayer.add(feild);
 };
-imageObj.src = '/assets/spinup_feild.png';
+imageObj.src = '/assets/spinup_field.png';
 
 var container = stage.container();
+
+imagelayer.listening(false);
 
 layer.add(line);
 stage.add(imagelayer);

@@ -29,6 +29,11 @@ html, body, #gui {
 
 }
 
+#inspector {
+    display: flex;
+    flex-direction: column;
+}
+
 #gui {
     display: flex;
     flex-direction: row;
