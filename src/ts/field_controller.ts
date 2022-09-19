@@ -1,10 +1,10 @@
 import Konva from "konva";
 import * as Field from "./field_canvas";
 import * as SideBar from "./side_bar";
-import * as Inspector from "./inspector";
+import { selected_point, linePoint } from "./inspector";
 import { Tools } from "./side_bar";
 
-var points : Inspector.linePoint[] = [];
+var points : linePoint[] = [];
 
 function activateEditMode() {
     if(SideBar.current_tool === Tools.Draw)
@@ -58,7 +58,7 @@ Field.stage.on('click', (e) => {
                 activateEditMode();
                 break;
             case Tools.Edit:
-                Inspector.selected_point?.deselect();
+                selected_point?.deselect();
                 break;
 
         }
@@ -81,7 +81,7 @@ Field.stage.on('click', (e) => {
                     strokeWidth: 3
                 });
 
-                var point = new Inspector.linePoint(circle, points.length);
+                var point = new linePoint(circle, points.length);
 
                 points.push(point);
 

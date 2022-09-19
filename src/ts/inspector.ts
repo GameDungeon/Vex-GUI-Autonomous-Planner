@@ -1,24 +1,27 @@
 import Konva from "konva";
 import * as Field from "./field_canvas";
-import * as SideBar from "./side_bar";
 import * as Units from "./units";
 import { map_range } from "./utils";
 
-var unit_dropdown = <HTMLInputElement>document.getElementById("units")!;
-var point_settings = document.getElementById("point-settings")!;
-var x_value = <HTMLInputElement>document.getElementById("x-value")!;
-var y_value = <HTMLInputElement>document.getElementById("y-value")!;
+let unit_dropdown = <HTMLInputElement>document.getElementById("units")!;
+let point_settings = document.getElementById("point-settings")!;
+let x_value = <HTMLInputElement>document.getElementById("x-value")!;
+let y_value = <HTMLInputElement>document.getElementById("y-value")!;
 
 const cord_val = new RegExp('^\\d+.?\\d*\\s?(' + 
     Object.keys(Units.abv_map).concat(Object.keys(Units.unit_map)).join('|') + ')?$'); 
 const cord_split = /(^[\d.]*)\s?(.*)/
 
-export var selected_point: linePoint | null = null;
+export let selected_point: linePoint | null = null;
+
+export class command {
+
+}
 
 export class linePoint {
     index: number
     shape: Konva.Circle
-    commands: Object[]
+    commands: command[]
     x: number
     y: number
     display_x: number
@@ -89,10 +92,12 @@ export class linePoint {
 
 export function update_inspector() {
     if (selected_point === null) {
-        point_settings.hidden = true;
+        point_settings.style.visibility = "hidden";
         return;
     }
-    point_settings.hidden = false;
+    point_settings.style.visibility = "visible";
+
+    
 
     x_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.display_x).toFixed(3) 
         + " " + Units.current_unit.abv;

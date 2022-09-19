@@ -18,9 +18,16 @@ html, body, #gui {
 #side-bar {
     display: flex;
     flex-direction: column;
+    height: 100vh;
 
     button {
-        color: darkgrey;
+        color: rgb(105, 101, 101);
+        height: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+        border-radius: 10px;
+        border-width: 1px;
     }
 
     button.active {
@@ -30,17 +37,48 @@ html, body, #gui {
 }
 
 #inspector {
+    height: 100vh;
+    display: flex;
+    width: 100%;
+
+    #point-settings {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .setting {
+            margin: 5px;
+            display: flex;
+            flex-direction: row;
+    
+            .incorrect {
+                color: red;
+            }
+        }
+    }
+}
+
+#command-container {
     display: flex;
     flex-direction: column;
+    background-color: whitesmoke;
+    flex-grow: 1;
+    margin: 10px 20px 10px 20px;
 
-    .setting {
-        margin: 5px;
-        display: flex;
-        flex-direction: row;
-
-        .incorrect {
-            color: red;
+    #command-title {
+        h3 {
+            text-align: center;
         }
+        hr {
+            height: 1px;
+            background-color: black;
+            border: none;
+        }
+    }
+
+    #commands {
+        height: auto;
+        flex-grow: 1;
     }
 }
 
