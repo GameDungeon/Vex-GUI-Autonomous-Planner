@@ -1,7 +1,5 @@
 var unit_dropdown = <HTMLInputElement>document.getElementById("units")!;
 
-export var units: unit[] = [];
-
 class unit {
     name: string
     abv: string
@@ -41,6 +39,8 @@ export function getUnitByName(unit_name: string) {
 export function setCurrentUnitByName(unit_name: string) {
     this.current_unit = getUnitByName(unit_name);
 }
+
+export var units: unit[] = [];
 
 export var unit_map: { [key:string]: unit } = {};
 export var abv_map: { [key:string]: unit } = {};

@@ -40,6 +40,7 @@ html, body, #gui {
     height: 100vh;
     display: flex;
     width: 100%;
+    overflow: scroll;
 
     #point-settings {
         display: flex;
@@ -64,9 +65,10 @@ html, body, #gui {
     background-color: whitesmoke;
     flex-grow: 1;
     margin: 10px 20px 10px 20px;
+    border: 1px solid black;
 
     #command-title {
-        h3 {
+        h2 {
             text-align: center;
         }
         hr {
@@ -79,6 +81,66 @@ html, body, #gui {
     #commands {
         height: auto;
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .command-box {
+            width: 90%;
+            height: 50px;
+            background-color: rgb(200, 200, 200);
+            border:1px solid black;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .command {
+            display: flex;
+            flex-direction: row;
+
+            .name-container, .time-container {
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+
+                input {
+                    width: 50%;
+                }
+            }
+
+            .remove {
+                float: left;
+                margin-left: auto;
+                margin-right: 20px;
+                height: 80%;
+                aspect-ratio : 1 / 1;
+                font-size: 25px;
+                border-radius: 5px;
+                color: maroon;
+                text-align: center;
+            }
+        }
+
+        .command-add {
+            button {
+                float: left;
+                margin-left: auto;
+                margin-right: 20px;
+                height: 80%;
+                aspect-ratio : 1 / 1;
+                font-size: 30px;
+                border-radius: 5px;
+                text-align: center;
+            }
+
+            h3 {
+                margin-left: 10px;
+            }
+
+        }
     }
 }
 

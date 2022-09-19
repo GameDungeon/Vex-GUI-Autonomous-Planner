@@ -58,7 +58,8 @@ Field.stage.on('click', (e) => {
                 activateEditMode();
                 break;
             case Tools.Edit:
-                selected_point?.deselect();
+                console.log("hello1")
+                selected_point!.deselect();
                 break;
 
         }

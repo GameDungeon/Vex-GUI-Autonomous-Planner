@@ -1,22 +1,23 @@
+import { command } from './command';
 import Konva from "konva";
 import * as Field from "./field_canvas";
 import * as Units from "./units";
 import { map_range } from "./utils";
 
 let unit_dropdown = <HTMLInputElement>document.getElementById("units")!;
-let point_settings = document.getElementById("point-settings")!;
+let point_settings = <HTMLElement>document.getElementById("point-settings")!;
+let command_list = <HTMLElement>document.getElementById("commands")!;
+let add_button = <HTMLInputElement>document.getElementById("add-button")!;
 let x_value = <HTMLInputElement>document.getElementById("x-value")!;
 let y_value = <HTMLInputElement>document.getElementById("y-value")!;
+
+let commands_change: boolean = true;
 
 const cord_val = new RegExp('^\\d+.?\\d*\\s?(' + 
     Object.keys(Units.abv_map).concat(Object.keys(Units.unit_map)).join('|') + ')?$'); 
 const cord_split = /(^[\d.]*)\s?(.*)/
 
 export let selected_point: linePoint | null = null;
-
-export class command {
-
-}
 
 export class linePoint {
     index: number
@@ -27,6 +28,7 @@ export class linePoint {
     display_x: number
     display_y: number
     constructor(shape, index) {
+        this.commands = [];
         this.index = index;
         this.shape = shape;
         this.bounds();
@@ -82,11 +84,24 @@ export class linePoint {
         this.shape.stroke('black');
         this.shape.radius(10);
 
+        console.log("hello")
+
+        commands_change = true;
+
         x_value.classList.remove('incorrect');
         y_value.classList.remove('incorrect');
 
         selected_point = null;
         update_inspector();
+    }
+
+    delete_command(command_to_delete: command) {
+        const index = this.commands.indexOf(command_to_delete);
+        if (index > -1) { // only splice array when item is found
+            this.commands.splice(index, 1);
+            commands_change = true;
+            update_inspector();
+        }
     }
 }
 
@@ -97,7 +112,18 @@ export function update_inspector() {
     }
     point_settings.style.visibility = "visible";
 
-    
+    if (commands_change) {
+        commands_change = false;
+
+        while (command_list.children.length > 1) {
+            command_list.removeChild(command_list.firstChild!);
+        }
+
+        selected_point.commands.forEach(listed_command => {
+            command_list.prepend(listed_command.html);
+        });
+        
+    }
 
     x_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.display_x).toFixed(3) 
         + " " + Units.current_unit.abv;
@@ -157,6 +183,15 @@ y_value.addEventListener("blur", () => {
         y_value.classList.add('incorrect');
     }
 });
+
+add_button.onclick = () => {
+    let added_command = new command();
+    added_command.point = selected_point!;
+    selected_point?.commands.unshift(added_command);
+
+    commands_change = true;
+    update_inspector();
+}
 
 unit_dropdown.onchange = () => {
     updateCurrentUnit();
