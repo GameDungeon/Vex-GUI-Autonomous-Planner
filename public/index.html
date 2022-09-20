@@ -15,6 +15,31 @@
             <button class="tool" id="edit">Edit</button>
             <button class="tool" id="draw">Draw</button>
             <button class="tool" id="insert">Insert</button>
+            <hr>
+            <button id="export-button">Export</button>
+            <hr>
+            <div id="robot-settings">
+                <div id = "robot-settings-title">
+                    <h2>Robot Settings</h2>
+                    <hr>
+                </div>
+                <div class="setting">
+                    <label>Width: </label>
+                    <input autocomplete="off" spellcheck="false" type="text" id="width-input" />
+                </div>
+                <div class="setting">
+                    <label>Height: </label>
+                    <input autocomplete="off" spellcheck="false" type="text" id="height-input" />
+                </div>
+                <div class="setting">
+                    <label>Speed: </label>
+                    <input autocomplete="off" spellcheck="false" type="text" id="speed-input" />
+                </div>
+                <div class="setting">
+                    <label>Rotation Speed: </label>
+                    <input autocomplete="off" spellcheck="false" type="text" id="rot-speed-input" />
+                </div>
+            </div>
         </div>
         <div id="field-container">
             <div id="field"></div>
@@ -22,15 +47,15 @@
         <div id="inspector">
             <div id="point-settings">
                 <div class="setting">
-                    <p>Units:</p>
+                    <label for="units">Units:</label>
                     <select id="units"></select>
                 </div>
                 <div class="setting">
-                    <p>X: </p>
+                    <label for="x-value">X: </label>
                     <input autocomplete="off" spellcheck="false" type="text" id="x-value" />
                 </div>
                 <div class="setting">
-                    <p>Y: </p>
+                    <label for="y-value">Y: </label>
                     <input autocomplete="off" spellcheck="false" type="text" id="y-value" />
                 </div>
                 <div id="command-container">

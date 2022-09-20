@@ -37,7 +37,7 @@ export function getUnitByName(unit_name: string) {
 }
 
 export function setCurrentUnitByName(unit_name: string) {
-    this.current_unit = getUnitByName(unit_name);
+    current_unit = getUnitByName(unit_name);
 }
 
 export var units: unit[] = [];

@@ -54,7 +54,6 @@ export class command {
     }
 
     delete() {
-        
         this.point.delete_command(this);
     }
 }

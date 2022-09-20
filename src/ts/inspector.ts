@@ -81,18 +81,18 @@ export class linePoint {
     }
 
     deselect() {
-        this.shape.stroke('black');
-        this.shape.radius(10);
-
-        console.log("hello")
-
-        commands_change = true;
-
-        x_value.classList.remove('incorrect');
-        y_value.classList.remove('incorrect');
-
-        selected_point = null;
-        update_inspector();
+        if (selected_point === this) {
+            this.shape.stroke('black');
+            this.shape.radius(10);
+    
+            commands_change = true;
+    
+            x_value.classList.remove('incorrect');
+            y_value.classList.remove('incorrect');
+    
+            selected_point = null;
+            update_inspector();
+        }
     }
 
     delete_command(command_to_delete: command) {
@@ -102,6 +102,13 @@ export class linePoint {
             commands_change = true;
             update_inspector();
         }
+    }
+
+    delete() {
+        if (selected_point === this) {
+            this.deselect();
+        }
+        this.shape.remove();
     }
 }
 
@@ -170,7 +177,7 @@ y_value.addEventListener("blur", () => {
     let value = y_value.value;
     if (cord_val.test(value))
     {
-        x_value.classList.remove('incorrect');
+        y_value.classList.remove('incorrect');
         let out = value.match(cord_split)!;
         let pos = parseFloat(out[1]);
         let in_unit = Units.getUnitByName(out[2]);

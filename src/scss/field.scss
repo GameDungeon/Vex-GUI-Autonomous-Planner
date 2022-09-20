@@ -13,15 +13,14 @@ html, body, #gui {
     width: 100%;
     height: 100%;
     background-color: lightgrey;
+    height: 100vh;
 }
 
 #side-bar {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 
     button {
-        color: rgb(105, 101, 101);
         height: 50px;
         margin-left: 10px;
         margin-right: 10px;
@@ -30,16 +29,27 @@ html, body, #gui {
         border-width: 1px;
     }
 
+    button.tool {
+        color: rgb(105, 101, 101);
+    }
+
     button.active {
         color: black;
+    }
+
+    hr {
+        border: 0;
+        clear:both;
+        display:block;
+        width: 96%;               
+        background-color:black;
+        height: 1px;
     }
 
 }
 
 #inspector {
-    height: 100vh;
     display: flex;
-    width: 100%;
     overflow: scroll;
 
     #point-settings {
@@ -51,6 +61,18 @@ html, body, #gui {
             margin: 5px;
             display: flex;
             flex-direction: row;
+            height: 50px;
+            align-items: center;
+
+            label {
+                width: 50px;
+                text-align: center;
+            }
+
+            input, select {
+                height: 50px;
+                width: 100px;
+            }
     
             .incorrect {
                 color: red;
@@ -140,6 +162,21 @@ html, body, #gui {
                 margin-left: 10px;
             }
 
+        }
+    }
+}
+
+#robot-settings {
+    h2 {
+        text-align: center;
+    }
+    .setting {
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+
+        .incorrect {
+            color: red;
         }
     }
 }
