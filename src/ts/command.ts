@@ -14,7 +14,7 @@ export class command {
         let name_label = document.createElement("p");
         let name_input = document.createElement("input");
 
-        name_label.innerText = "Name: ";
+        name_label.innerText = "Command: ";
 
         name_container.classList.add("name-container");
         //name_label.classList.add("");
@@ -22,32 +22,16 @@ export class command {
 
         name_container.appendChild(name_label);
         name_container.appendChild(name_input);
-
-        let time_container = document.createElement("div");
-        let time_label = document.createElement("p");
-        let time_input = document.createElement("input");
-
-        time_label.innerText = "Time: ";
-
-        time_container.classList.add("time-container");
-        //time_label.classList.add("");
-        //time_input.classList.add("");
-
-        time_container.appendChild(time_label);
-        time_container.appendChild(time_input);
-
-
         let remove = document.createElement("button");
         remove.classList.add("remove");
         remove.innerText = "X";
 
         remove.onclick = () => {
-            console.log("delete")
+            
             this.delete();
         }
 
         container.appendChild(name_container);
-        container.appendChild(time_container);
         container.appendChild(remove);
 
         this.html = container;
