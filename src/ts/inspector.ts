@@ -1,9 +1,8 @@
 import { command } from './command';
 import Konva from "konva";
-import * as Field from "./field/field_canvas";
 import * as Active from "./field/active_layer";
 import * as Units from "./units";
-import { map_range } from "./utils";
+import { robot_width, robot_height } from "./robot";
 
 let unit_dropdown = <HTMLInputElement>document.getElementById("units")!;
 let point_settings = <HTMLElement>document.getElementById("point-settings")!;
@@ -42,8 +41,8 @@ export class linePoint {
 
     bounds() {
         this.update_postion();
-        this.shape.x(Math.min(Math.max(0, this.x), 1000));
-        this.shape.y(Math.min(Math.max(0, this.y), 1000));
+        this.shape.x(Math.min(Math.max(0+robot_width/2 , this.x), 1000-robot_width/2));
+        this.shape.y(Math.min(Math.max(0+robot_height/2, this.y), 1000-robot_height/2));
         this.update_postion();
     }
 

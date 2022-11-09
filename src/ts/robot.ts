@@ -3,8 +3,8 @@ import * as Units from "./units";
 let width_input = <HTMLInputElement>document.getElementById("width-input")!;
 let height_input = <HTMLInputElement>document.getElementById("height-input")!;
 
-let width: number = 0;
-let height: number = 0;
+export let robot_width: number = 0;
+export let robot_height: number = 0;
 
 const cord_val = new RegExp('^\\d+.?\\d*\\s?(' + 
     Object.keys(Units.abv_map).concat(Object.keys(Units.unit_map)).join('|') + ')?$'); 
@@ -18,7 +18,7 @@ width_input.addEventListener("blur", () => {
         let out = value.match(cord_split)!;
         let pos = parseFloat(out[1]);
         let in_unit = Units.getUnitByName(out[2]);
-        width = Units.convertToUnit(in_unit, Units.pixels, pos);
+        robot_width = Units.convertToUnit(in_unit, Units.pixels, pos);
     }
     else {
         width_input.classList.add('incorrect');
@@ -33,9 +33,12 @@ height_input.addEventListener("blur", () => {
         let out = value.match(cord_split)!;
         let pos = parseFloat(out[1]);
         let in_unit = Units.getUnitByName(out[2]);
-        height = Units.convertToUnit(in_unit, Units.pixels, pos);
+        robot_height = Units.convertToUnit(in_unit, Units.pixels, pos);
     }
     else {
         height_input.classList.add('incorrect');
     }
 });
+
+width_input.value = "0 in";
+height_input.value = "0 in";
