@@ -10,6 +10,7 @@ let command_list = <HTMLElement>document.getElementById("commands")!;
 let add_button = <HTMLInputElement>document.getElementById("add-button")!;
 let x_value = <HTMLInputElement>document.getElementById("x-value")!;
 let y_value = <HTMLInputElement>document.getElementById("y-value")!;
+let flip = <HTMLInputElement>document.getElementById("flip")!;
 
 let commands_change: boolean = true;
 
@@ -25,6 +26,7 @@ export class linePoint {
     commands: command[]
     x: number
     y: number
+    flip: boolean
     constructor(shape, index) {
         this.commands = [];
         this.index = index;
@@ -124,8 +126,9 @@ export function update_inspector() {
         selected_point.commands.forEach(listed_command => {
             command_list.prepend(listed_command.html);
         });
-        
     }
+
+    flip.checked = selected_point.flip;
 
     x_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.x).toFixed(3) 
         + " " + Units.current_unit.abv;
@@ -198,5 +201,10 @@ add_button.onclick = () => {
 unit_dropdown.onchange = () => {
     updateCurrentUnit();
 };
+
+flip.onclick = () => {
+    if(selected_point !== null) 
+        selected_point.flip = flip.checked;
+}
 
 update_inspector()
