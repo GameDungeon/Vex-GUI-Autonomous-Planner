@@ -1,5 +1,6 @@
 import Konva from "konva";
-import * as Field from "./field_canvas";
+import * as Field from "./field/field_canvas";
+import * as Active from "./field/active_layer";
 import * as SideBar from "./side_bar";
 import { selected_point, linePoint } from "./inspector";
 import { Tools } from "./side_bar";
@@ -9,7 +10,7 @@ export let points : linePoint[] = [];
 function activateEditMode() {
     if(SideBar.current_tool === Tools.Draw)
     {
-        Field.line.points(Field.line.points().slice(0, -2));
+        Active.line.points(Active.line.points().slice(0, -2));
     }
 
     SideBar.selectTool(document.getElementById("edit"), Tools.Edit);
@@ -19,14 +20,14 @@ function activateDrawMode() {
     var pointerPos = Field.stage.getRelativePointerPosition();
     var x = pointerPos.x;
     var y = pointerPos.y;
-    Field.line.points(Field.line.points().concat(x, y));
+    Active.line.points(Active.line.points().concat(x, y));
     SideBar.selectTool(document.getElementById("draw"), Tools.Draw);
 }
 
 function activateInsertMode() {
     if(SideBar.current_tool === Tools.Draw)
     {
-        Field.line.points(Field.line.points().slice(0, -2));
+        Active.line.points(Active.line.points().slice(0, -2));
     }
 
     SideBar.selectTool(document.getElementById("insert"), Tools.Insert);
@@ -41,7 +42,7 @@ function updatePoints() {
         linepoints[i*2] = current_point.x;
         linepoints[i*2+1] = current_point.y;
     }
-    Field.line.points(linepoints);
+    Active.line.points(linepoints);
 }
 
 Field.stage.on('contextmenu', (e) => {
@@ -55,7 +56,7 @@ Field.stage.on('pointermove', function () {
             var pointerPos = Field.stage.getRelativePointerPosition();
             var x = pointerPos.x;
             var y = pointerPos.y;  
-            Field.line.points(Field.line.points().slice(0, -2).concat(x, y));  
+            Active.line.points(Active.line.points().slice(0, -2).concat(x, y));  
             break;
     }
 
@@ -81,7 +82,7 @@ Field.stage.on('click', (e) => {
                 var pointerPos = Field.stage.getRelativePointerPosition();
                 var x = pointerPos.x;
                 var y = pointerPos.y; 
-                Field.line.points(Field.line.points().concat([x, y]));
+                Active.line.points(Active.line.points().concat([x, y]));
             
                 var circle = new Konva.Circle({
                     x: x,
@@ -104,7 +105,7 @@ Field.stage.on('click', (e) => {
                     point.select();
                 })
             
-                Field.pointslayer.add(circle);
+                Active.pointslayer.add(circle);
                 break;
         }
     }

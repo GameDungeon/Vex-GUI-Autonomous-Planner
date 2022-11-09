@@ -4,9 +4,9 @@ import { inches, pixels, convertToUnit } from "./units";
 let export_button = <HTMLButtonElement>document.getElementById("export-button")!;
 
 export_button.onclick = () => {
-    let out = `start ${convertToUnit(pixels, inches, points[0].display_x)} ${convertToUnit(pixels, inches, points[0].display_y)};`
+    let out = `start ${convertToUnit(pixels, inches, points[0].x).toFixed(3) } ${convertToUnit(pixels, inches, points[0].y).toFixed(3) };`
     points.slice(1).forEach(point => {
-        out += `move ${convertToUnit(pixels, inches, point.display_x)} ${convertToUnit(pixels, inches, point.display_y)};`
+        out += `move ${convertToUnit(pixels, inches, point.x).toFixed(3) } ${convertToUnit(pixels, inches, point.y).toFixed(3) };`
 
         if(point.commands.length > 0) {
             point.commands.forEach(command => {
@@ -14,6 +14,7 @@ export_button.onclick = () => {
             })
         }
     });
+    out += "end";
     console.log(out)
 }
 

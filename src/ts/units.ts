@@ -45,13 +45,13 @@ export var units: unit[] = [];
 export var unit_map: { [key:string]: unit } = {};
 export var abv_map: { [key:string]: unit } = {};
 
-export var pixels = new unit("Pixels", "px", 1008);
 export var inches = new unit("Inches", "in", 144);
 export var feet = new unit("Feet", "ft", 12);
 export var yards = new unit("Yards", "yd", 4);
 export var meters = new unit("Meters", "m", 3.6576);
 export var centimeters = new unit("Centimeters", "cm", 365.76);
 export var milimeters = new unit("Milimeters", "mm", 3657.6);
+export var pixels = new unit("Pixels", "px", 1000);
 
 export var current_unit: unit = units[0];
 

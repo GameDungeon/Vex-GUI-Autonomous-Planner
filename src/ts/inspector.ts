@@ -1,6 +1,7 @@
 import { command } from './command';
 import Konva from "konva";
-import * as Field from "./field_canvas";
+import * as Field from "./field/field_canvas";
+import * as Active from "./field/active_layer";
 import * as Units from "./units";
 import { map_range } from "./utils";
 
@@ -25,8 +26,6 @@ export class linePoint {
     commands: command[]
     x: number
     y: number
-    display_x: number
-    display_y: number
     constructor(shape, index) {
         this.commands = [];
         this.index = index;
@@ -43,17 +42,14 @@ export class linePoint {
 
     bounds() {
         this.update_postion();
-        this.shape.x(Math.min(Math.max(Field.fieldBounds[0], this.x), Field.fieldBounds[1]));
-        this.shape.y(Math.min(Math.max(Field.fieldBounds[0], this.y), Field.fieldBounds[1]));
+        this.shape.x(Math.min(Math.max(0, this.x), 1000));
+        this.shape.y(Math.min(Math.max(0, this.y), 1000));
         this.update_postion();
     }
 
     update_postion() {
         this.x = this.shape.getAttr("x");
         this.y = this.shape.getAttr("y");
-
-        this.display_x = map_range(this.x, Field.fieldBounds[0], Field.fieldBounds[1], 0, 1008);
-        this.display_y = map_range(this.y, Field.fieldBounds[0], Field.fieldBounds[1], 0, 1008);
     }
 
     update_points() {
@@ -62,10 +58,10 @@ export class linePoint {
             update_inspector();
         }
 
-        let linepoints = Field.line.points();
+        let linepoints = Active.line.points();
         linepoints[this.index*2] = this.x;
         linepoints[this.index*2+1] = this.y;
-        Field.line.points(linepoints);
+        Active.line.points(linepoints);
     }
 
     select() {
@@ -132,9 +128,9 @@ export function update_inspector() {
         
     }
 
-    x_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.display_x).toFixed(3) 
+    x_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.x).toFixed(3) 
         + " " + Units.current_unit.abv;
-    y_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.display_y).toFixed(3) 
+    y_value.value = Units.convertToCurrentUnit(Units.pixels, selected_point.y).toFixed(3) 
         + " " + Units.current_unit.abv;
 }
 
@@ -164,7 +160,7 @@ x_value.addEventListener("blur", () => {
         let pos = parseFloat(out[1]);
         let in_unit = Units.getUnitByName(out[2]);
         pos = Units.convertToUnit(in_unit, Units.pixels, pos);
-        selected_point?.shape.x(map_range(pos, 0, 1008, Field.fieldBounds[0], Field.fieldBounds[1]));
+        selected_point?.shape.x(pos);
         selected_point?.drag();
         update_inspector();
     }
@@ -182,7 +178,7 @@ y_value.addEventListener("blur", () => {
         let pos = parseFloat(out[1]);
         let in_unit = Units.getUnitByName(out[2]);
         pos = Units.convertToUnit(in_unit, Units.pixels, pos);
-        selected_point?.shape.y(map_range(pos, 0, 1008, Field.fieldBounds[0], Field.fieldBounds[1]));
+        selected_point?.shape.y(pos);
         selected_point?.drag();
         update_inspector();
     }

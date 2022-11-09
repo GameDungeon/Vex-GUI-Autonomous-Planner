@@ -253,6 +253,17 @@ html, body, #gui {
     }
 }
 
+#view-settings {
+    h2 {
+        text-align: center;
+    }
+    .setting {
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+    }
+}
+
 #gui {
     display: flex;
     flex-direction: row;
