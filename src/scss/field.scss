@@ -20,6 +20,31 @@ html, body, #gui {
     display: flex;
     flex-direction: column;
 
+    hr {
+        border: 0;
+        clear:both;
+        display:block;
+        width: 96%;               
+        background-color:black;
+        height: 1px;
+    }
+
+    hr.title-sep {
+        background-color: gray;        
+    }
+
+}
+
+#tools {
+    display: flex;
+    flex-direction: column;
+
+    #tools-title {
+        h2 {
+            text-align: center;
+        }
+    }
+
     button {
         height: 50px;
         margin-left: 10px;
@@ -37,13 +62,58 @@ html, body, #gui {
         color: black;
     }
 
-    hr {
-        border: 0;
-        clear:both;
-        display:block;
-        width: 96%;               
-        background-color:black;
-        height: 1px;
+}
+
+#auton-select-container {
+    display: flex;
+    flex-direction: column;
+
+    #auton-select-title {
+        h2 {
+            text-align: center;
+        }
+    }
+
+    #auton-select {
+        margin: 5px;
+        display: flex;
+        flex-direction: row;
+        height: 50px;
+        align-items: center;
+
+        label {
+            margin-left: 20px;
+            margin-right: 10px;
+            width: 100px;
+            text-align: center;
+        }
+
+        input, select {
+            height: 50px;
+            width: 100%;
+            margin-right: 5px;
+        }
+
+        .incorrect {
+            color: red;
+        }
+    }
+
+    button {
+        height: 50px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+        border-radius: 10px;
+        border-width: 1px;
+    }
+
+    button.tool {
+        color: rgb(105, 101, 101);
+    }
+
+    button.active {
+        color: black;
     }
 
 }

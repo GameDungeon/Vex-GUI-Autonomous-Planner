@@ -12,16 +12,33 @@
 <body>
     <div id="gui">
         <div id="side-bar">
-            <button class="tool" id="edit">Edit</button>
-            <button class="tool" id="draw">Draw</button>
-            <button class="tool" id="insert">Insert</button>
+            <div id="tools">
+                <div id = "tools-title">
+                    <h2>Tools</h2>
+                    <hr class="title-sep">
+                </div>
+                <button class="tool" id="edit">Edit</button>
+                <button class="tool" id="draw">Draw</button>
+                <button class="tool" id="insert">Insert</button>
+            </div>
             <hr>
-            <button id="export-button">Export</button>
-            <hr>
+            <div id="auton-select-container">
+                <div id = "auton-select-title">
+                    <h2>Autonomous</h2>
+                    <hr class="title-sep">
+                </div>
+                <div id="auton-select">
+                    <label for="auton">Autonomous:</label>
+                    <select id="auton"></select>
+                </div>
+                <button id="export-button">Import</button>
+                <button id="export-button">Export</button>
+                <hr>
+            </div>
             <div id="robot-settings">
                 <div id = "robot-settings-title">
                     <h2>Robot Settings</h2>
-                    <hr>
+                    <hr class="title-sep">
                 </div>
                 <div class="setting">
                     <label>Width: </label>
@@ -30,14 +47,6 @@
                 <div class="setting">
                     <label>Height: </label>
                     <input autocomplete="off" spellcheck="false" type="text" id="height-input" />
-                </div>
-                <div class="setting">
-                    <label>Speed: </label>
-                    <input autocomplete="off" spellcheck="false" type="text" id="speed-input" />
-                </div>
-                <div class="setting">
-                    <label>Rotation Speed: </label>
-                    <input autocomplete="off" spellcheck="false" type="text" id="rot-speed-input" />
                 </div>
             </div>
         </div>
@@ -57,6 +66,10 @@
                 <div class="setting">
                     <label for="y-value">Y: </label>
                     <input autocomplete="off" spellcheck="false" type="text" id="y-value" />
+                </div>
+                <div class="setting">
+                    <label for="flip">Flip: </label>
+                    <input autocomplete="off" spellcheck="false" type="checkbox" id="flip" />
                 </div>
                 <div id="command-container">
                     <div id = "command-title">
