@@ -20,6 +20,15 @@ html, body, #gui {
     display: flex;
     flex-direction: column;
 
+    button {
+        height: 5vh;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 5px;
+        border-radius: 10px;
+        border-width: 1px;
+    }
+
     hr {
         border: 0;
         clear:both;
@@ -43,15 +52,6 @@ html, body, #gui {
         h2 {
             text-align: center;
         }
-    }
-
-    button {
-        height: 50px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 5px;
-        border-radius: 10px;
-        border-width: 1px;
     }
 
     button.tool {
@@ -97,15 +97,6 @@ html, body, #gui {
         .incorrect {
             color: red;
         }
-    }
-
-    button {
-        height: 50px;
-        margin-left: 10px;
-        margin-right: 10px;
-        margin-top: 5px;
-        border-radius: 10px;
-        border-width: 1px;
     }
 
     button.tool {
