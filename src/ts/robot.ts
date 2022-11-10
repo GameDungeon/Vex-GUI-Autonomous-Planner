@@ -2,9 +2,11 @@ import * as Units from "./units";
 
 let width_input = <HTMLInputElement>document.getElementById("width-input")!;
 let height_input = <HTMLInputElement>document.getElementById("height-input")!;
+let rot_input = <HTMLInputElement>document.getElementById("rot-input")!;
 
 export let robot_width: number = 0;
 export let robot_height: number = 0;
+export let robot_rot: number = 90;
 
 const cord_val = new RegExp('^\\d+.?\\d*\\s?(' + 
     Object.keys(Units.abv_map).concat(Object.keys(Units.unit_map)).join('|') + ')?$'); 
@@ -40,5 +42,10 @@ height_input.addEventListener("blur", () => {
     }
 });
 
+rot_input.addEventListener("blur", () => {
+    robot_rot = Number(rot_input.value);
+});
+
 width_input.value = "0 in";
 height_input.value = "0 in";
+rot_input.value = "90";

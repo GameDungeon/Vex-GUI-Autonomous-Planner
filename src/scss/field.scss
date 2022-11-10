@@ -13,7 +13,7 @@ html, body, #gui {
     width: 100%;
     height: 100vh;
     background-color: lightgrey;
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 #side-bar {
@@ -233,6 +233,11 @@ html, body, #gui {
     h2 {
         text-align: center;
     }
+
+    input, .setting {
+        width: 90%;
+    }
+
     .setting {
         margin: 5px;
         display: flex;

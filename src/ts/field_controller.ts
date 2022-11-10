@@ -56,12 +56,11 @@ function activateInsertMode() {
         });
 
         circle.on("pointerdown", () => {
-            let new_points = Active.line.points().splice(i*2+2, 0, new_point[0], new_point[1])
-            Active.line.points(new_points);
-
+            let x = new_point[0];
+            let y = new_point[1];
             var new_real_point = new Konva.Circle({
-                x: new_point[0],
-                y: new_point[1],
+                x: x, 
+                y: y,
                 radius: 10,
                 fill: 'black',
                 draggable: true,
@@ -69,8 +68,12 @@ function activateInsertMode() {
             });
 
             var point = new linePoint(new_real_point, points.length);
+            points.splice(i+1, 0, point);
+
+            point.select();
 
             new_real_point.on('dragmove', () => {
+                activateEditMode();
                 point.drag();
             });
 
@@ -78,12 +81,10 @@ function activateInsertMode() {
                 point.select();
             })
 
-            points.splice(i*2, 0, point);
-            point.select();
-
             Active.pointslayer.add(new_real_point);
-
             activateEditMode();
+
+            updatePoints();
         })
 
         midpoints.push(circle);
@@ -157,6 +158,7 @@ Field.stage.on('click', (e) => {
                 points.push(point);
 
                 circle.on('dragmove', () => {
+                    activateEditMode();
                     point.drag();
                 });
 

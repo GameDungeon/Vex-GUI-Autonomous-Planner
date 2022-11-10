@@ -1,10 +1,17 @@
 import { points } from "./field_controller";
 import { inches, pixels, convertToUnit } from "./units";
+import { robot_rot } from "./robot";
 
 let export_button = <HTMLButtonElement>document.getElementById("export-button")!;
 
 export_button.onclick = () => {
-    let out = `start ${convertToUnit(pixels, inches, points[0].x).toFixed(3) } ${convertToUnit(pixels, inches, points[0].y).toFixed(3) };`;
+    if(points.length == 0)
+    {
+        console.log("Nothing to Export");
+        return;
+    }
+
+    let out = `start ${convertToUnit(pixels, inches, points[0].x).toFixed(3) } ${convertToUnit(pixels, inches, points[0].y).toFixed(3) } ${robot_rot};`;
 
     let first = true
 
