@@ -10,3 +10,4 @@ import "./ts/robot";
 import "./ts/export";
 
 import "./scss/field.scss";
+import "./scss/dropdown.scss";
